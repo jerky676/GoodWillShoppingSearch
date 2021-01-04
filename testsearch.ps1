@@ -47,4 +47,77 @@ $url+="desc=$desc&"
 $url+="ss=$ss&"
 $url+="UseBuyerPrefs=$UseBuyerPrefs"
 
-start-process $url
+
+# Install the module on demand
+If (-not (Get-Module -ErrorAction Ignore -ListAvailable PowerHTML)) {
+    Write-Verbose "Installing PowerHTML module for the current user..."
+    Install-Module PowerHTML -ErrorAction Stop
+  }
+  Import-Module -ErrorAction Stop PowerHTML
+
+
+$searchClass = "data-container"
+$productData = "product-data"
+$searchnode="//span[@class=""$searchClass""]"
+
+$htmlDom = ConvertFrom-Html -URI $url
+
+$nodes = $($htmlDom.SelectNodes($searchnode))
+
+
+
+foreach ($desc in $nodes){
+    # $desc | Get-Member
+
+    $desc.ParentNode | Get-Member
+    exit
+    # $desc.innerhtml
+    # $productdata=$($desc.SelectSingleNode("//div[@class=""$productData""]"))
+
+    # $productData.innerhtml
+    # $productData.SelectSingleNode("//div[@class=""$productData""]")
+}
+
+
+# private static IEnumerable<HtmlNode> GetElementsWithClass(HtmlDocument doc, String className) {
+
+#     Regex regex = new Regex( "\\b" + Regex.Escape( className ) + "\\b", RegexOptions.Compiled );
+
+#     return doc
+#         .Descendants()
+#         .Where( n => n.NodeType == NodeType.Element )
+#         .Where( e => e.Name == "div" && regex.IsMatch( e.GetAttributeValue("class", "") ) );
+# }
+
+
+
+# foreach($node in $nodes){
+#     $node.HasClass($searchClass)
+#     # $node.innerhtml 
+# }
+
+
+# .getElementsByClassName($searchClass) | %{Write-Host $_.innerhtml}
+
+#for extra credit we can parse all the links
+#$req.ParsedHtml.getElementsByTagName('a') | %{Write-Host $_.href} #outputs all the links
+
+
+#$req
+
+
+
+# $WebResponseObj # | Where-Object $_.class -eq "data-container"
+
+# $HTML = New-Object -Com "HTMLFile"
+
+# $HTML.IHTMLDocument2_write($WebResponseObj.Content)
+
+# $HTML.ParsedHtml # .getElementsByTagName('span') 
+
+
+
+
+#| Where-Object $_.class -eq "data-container"
+
+# products = soup.find_all('span', {'class' : 'data-container'})
