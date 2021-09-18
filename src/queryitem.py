@@ -1,3 +1,5 @@
+from enum import Enum,unique
+
 class QueryItem:
     def __init__(self, query_string: str, value: str):
         self.query_string = query_string
@@ -13,4 +15,8 @@ class QueryItem:
         self.value = value
 
     def value(self):
-        return self.value
+        if type(self.value) is str:
+            return self.value
+        elif type(self.value) is Enum:
+            print(f'enum: {self.value}')
+            return self.value.value

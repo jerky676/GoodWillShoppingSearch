@@ -10,15 +10,22 @@ import pytz
 from bs4.element import PageElement
 from bs4 import BeautifulSoup
 import requests
+import json
 
 class GoodWillSearch:
-    def __init__(self, time_zone: pytz.timezone):
+    def __init__(self, time_zone: pytz.timezone, jsonSearchParams: str = None):
         self.time_zone = time_zone
+        self.set_default_search()
+        if jsonSearchParams is not None:
+            self.load_json_search_file(jsonSearchParams)
+
+
+    def set_default_search(self):
         self.url = "https://www.shopgoodwill.com/Listings"
         self.search_gallery = QueryItem("sg",GoodWillSearchGallery.Empty)    
         self.keyword_search = QueryItem("st","")
-        self.categories = QueryItem("c","")
-        self.good_will_location = QueryItem("s","")
+        self.categories = QueryItem("c",GoodWillCategories.Empty)
+        self.good_will_location = QueryItem("s",GoodWillLocations.Empty)
         self.low_price = QueryItem("lp",0)
         self.high_price = QueryItem("hp",999999)
         self.show_buy_now_only = QueryItem("sbn",False)
@@ -36,7 +43,80 @@ class GoodWillSearch:
         self.page_size = QueryItem("ps",40)
         self.short_description = QueryItem("desc",True)
         self.saved_search_id = QueryItem("ss",0)
-        self.use_buyer_prefrences = QueryItem("UseBuyerPrefs",True)       
+        self.use_buyer_prefrences = QueryItem("UseBuyerPrefs",True)
+
+    def load_json_search_file(self, filename):
+        with open(filename) as json_file:
+            json_data = json.load(json_file)
+            self.search_params_by_json(json_data)
+
+    def search_params_by_json(self, json_data):
+        if 'search_gallery' in json_data:
+            self.search_gallery = GoodWillSearchGallery(json_data['search_gallery'])
+        if 'keyword_search' in json_data:
+            self.categories = GoodWillCategories(json_data['categories'])
+        if 'good_will_location' in json_data:
+            self.good_will_location = GoodWillLocations(json_data['good_will_location'])
+        if 'low_price' in json_data:
+            self.low_price = json_data['low_price']
+        if 'high_price' in json_data:
+            self.high_price = json_data['high_price']
+        if 'show_buy_now_only' in json_data:
+            self.show_buy_now_only = json_data['show_buy_now_only']
+        if 'show_pick_up_only' in json_data:
+            self.show_pick_up_only = json_data['show_pick_up_only']
+        if 'hide_pick_up_only' in json_data:
+            self.hide_pick_up_only = json_data['hide_pick_up_only']
+        if 'show_one_cent_ship_only' in json_data:
+            self.show_one_cent_ship_only = json_data['show_one_cent_ship_only']
+        if 'search_description' in json_data:
+            self.search_description = json_data['search_description']
+        if 'show_closed_auctions' in json_data:
+            self.show_closed_auctions = json_data['show_closed_auctions']
+        if 'closed_auction_end_date' in json_data:
+            self.closed_auction_end_date = json_data['closed_auction_end_date']
+        if 'day_back' in json_data:
+            self.day_back = json_data['day_back']
+        if 'search_canada' in json_data:
+            self.search_canada = json_data['search_canada']
+        if 'search_international' in json_data:
+            self.search_international = json_data['search_international']
+        if 'field_order' in json_data:
+            self.field_order = json_data['field_order']
+        if 'page_number' in json_data:
+            self.page_number = json_data['page_number']
+        if 'page_size' in json_data:
+            self.page_size = json_data['page_size']
+        if 'short_description' in json_data:
+            self.short_description = json_data['short_description']
+        if 'saved_search_id' in json_data:
+            self.saved_search_id = json_data['saved_search_id']
+
+    def print_search_params(self):
+        print(f'url: {self.url}')
+        print(f'search_gallery.value: {self.search_gallery.value}')
+        print(f'keyword_search.value: {self.keyword_search.value}')
+        print(f'categories.value: {self.categories.value}')
+        print(f'good_will_location.value: {self.good_will_location.value}')
+        print(f'low_price.value: {self.low_price.value}')
+        print(f'high_price.value: {self.high_price.value}')
+        print(f'show_buy_now_only.value: {self.show_buy_now_only.value}')
+        print(f'show_pick_up_only.value: {self.show_pick_up_only.value}')
+        print(f'hide_pick_up_only.value: {self.hide_pick_up_only.value}')
+        print(f'show_one_cent_ship_only.value: {self.show_one_cent_ship_only.value}')
+        print(f'search_description.value: {self.search_description.value}')
+        print(f'show_closed_auctions.value: {self.show_closed_auctions.value}')
+        print(f'closed_auction_end_date.value: {self.closed_auction_end_date.value}')
+        print(f'day_back.value: {self.day_back.value}')
+        print(f'search_canada.value: {self.search_canada.value}')
+        print(f'search_international.value: {self.search_international.value}')
+        print(f'field_order.value: {self.field_order.value}')
+        print(f'page_number.value: {self.page_number.value}')
+        print(f'page_size.value: {self.page_size.value}')
+        print(f'short_description.value: {self.short_description.value}')
+        print(f'saved_search_id.value: {self.saved_search_id.value}')
+        print(f'use_buyer_prefrences.value: {self.use_buyer_prefrences.value}')
+
 
     def search(self,keyword_search:str):
         self.keyword_search_set(quote(keyword_search))

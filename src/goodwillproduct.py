@@ -55,7 +55,14 @@ class GoodWillProduct:
         self.listing = product.find('div', {'class' : 'title' }).text.strip().split('\n')[0].strip()
         self.product_id = product.find('div', {'class' : 'product-number' }).text.split(' ')[2]
         self.url = 'https://www.shopgoodwill.com/Item/{}'.format(self.product_id)
-        self.ends = product.select('div.timer.countdown-classic.product-countdown')[0]['data-countdown']
-        self.end_date = self.time_zone.localize(datetime.strptime(self.ends, '%m/%d/%Y %I:%M:%S %p'))
-        self.durration = self.end_date - datetime.now(self.time_zone)
+
+        if product.find('div.timer.countdown-classic.product-countdown'):
+            self.ends = product.select('div.timer.countdown-classic.product-countdown')[0]['data-countdown']
+            self.end_date = self.time_zone.localize(datetime.strptime(self.ends, '%m/%d/%Y %I:%M:%S %p'))
+            self.durration = self.end_date - datetime.now(self.time_zone)
+            self.durration = self.durration.total_seconds()
+        else:
+            self.end_date = datetime.now(self.time_zone)
+            self.durration = 0
+
         self.listing = unidecode(self.listing)

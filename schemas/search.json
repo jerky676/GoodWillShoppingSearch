@@ -1,0 +1,75 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+        "keyword_search": {
+            "type": "string"
+        },
+        "search_gallery": {
+            "type": "string"
+        },
+        "categories": {
+            "type": "string"
+        },
+        "good_will_location": {
+            "type": "string"
+        },
+        "low_price": {
+            "type": "integer"
+        },
+        "high_price": {
+            "type": "integer"
+        },
+        "show_buy_now_only": {
+            "type": "boolean"
+        },
+        "show_pick_up_only": {
+            "type": "boolean"
+        },
+        "hide_pick_up_only": {
+            "type": "boolean"
+        },
+        "show_one_cent_ship_only": {
+            "type": "boolean"
+        },
+        "search_description": {
+            "type": "boolean"
+        },
+        "show_closed_auctions": {
+            "type": "boolean"
+        },
+        "closed_auction_end_date": {
+            "type": "string"
+        },
+        "day_back": {
+            "type": "integer"
+        },
+        "search_canada": {
+            "type": "boolean"
+        },
+        "search_international": {
+            "type": "boolean"
+        },
+        "field_order": {
+            "type": "integer"
+        },
+        "page_number": {
+            "type": "integer"
+        },
+        "page_size": {
+            "type": "integer"
+        },
+        "short_description": {
+            "type": "boolean"
+        },
+        "saved_search_id": {
+            "type": "integer"
+        },
+        "use_buyer_prefrences": {
+            "type": "boolean"
+        }
+    },
+    "required": [
+        "keyword_search"
+    ]
+}

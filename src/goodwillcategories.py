@@ -1,6 +1,7 @@
 from enum import Enum,unique
 
 class GoodWillCategories(Enum):
+    Empty = ""
     Antiques = 1
     Art = 15
     BathAndBody = 336

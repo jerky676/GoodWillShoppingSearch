@@ -6,7 +6,8 @@ class GoodWillLocations(Enum):
     """
     # The GoodWill locations.
     # The order of the locations is not important.
-    
+
+    Empty = ""
     # Goodwill Easter Seals of the Gulf Coast Inc.
     AL_Mobile = 53
     # Goodwill Industries of Arkansas Inc.
