@@ -1,9 +1,0 @@
-C:\Users\jerky\repos\DealScanner\DealScanner.Repostitory\bin\Debug\netstandard2.0\DealScanner.Repostitory.deps.json
-C:\Users\jerky\repos\DealScanner\DealScanner.Repostitory\bin\Debug\netstandard2.0\DealScanner.Repostitory.dll
-C:\Users\jerky\repos\DealScanner\DealScanner.Repostitory\bin\Debug\netstandard2.0\DealScanner.Repostitory.pdb
-C:\Users\jerky\repos\DealScanner\DealScanner.Repostitory\obj\Debug\netstandard2.0\DealScanner.Repostitory.csprojAssemblyReference.cache
-C:\Users\jerky\repos\DealScanner\DealScanner.Repostitory\obj\Debug\netstandard2.0\DealScanner.Repostitory.AssemblyInfoInputs.cache
-C:\Users\jerky\repos\DealScanner\DealScanner.Repostitory\obj\Debug\netstandard2.0\DealScanner.Repostitory.AssemblyInfo.cs
-C:\Users\jerky\repos\DealScanner\DealScanner.Repostitory\obj\Debug\netstandard2.0\DealScanner.Repostitory.csproj.CoreCompileInputs.cache
-C:\Users\jerky\repos\DealScanner\DealScanner.Repostitory\obj\Debug\netstandard2.0\DealScanner.Repostitory.dll
-C:\Users\jerky\repos\DealScanner\DealScanner.Repostitory\obj\Debug\netstandard2.0\DealScanner.Repostitory.pdb
