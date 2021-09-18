@@ -8,7 +8,7 @@ from urllib.parse import quote
 import time
 import os
 import pytz
-from goodwillproduct import GoodWillProduct
+from goodwillproduct import '.\GoodWillSearch\GoodWillProduct'
 from goodwillsearch import GoodWillSearch
 
 def main():
@@ -19,12 +19,12 @@ def main():
 def search_byjson():
     SGW_TIMEZONE = pytz.timezone('America/Chicago')
     dir_path = os.path.dirname(os.path.realpath(__file__))
-    print(dir_path)
     searchJson = dir_path + '\\austincomputer.json'
-    print(searchJson)
     search = GoodWillSearch(SGW_TIMEZONE,searchJson)
+    search = GoodWillSearch(SGW_TIMEZONE)
     search.print_search_params()
-    # search.search("dell")
+    search.search("dell")
+    #print(search.search_url())
 
 def run_search():
     SGW_TIMEZONE = pytz.timezone('America/Chicago')

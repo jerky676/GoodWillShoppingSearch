@@ -52,70 +52,70 @@ class GoodWillSearch:
 
     def search_params_by_json(self, json_data):
         if 'search_gallery' in json_data:
-            self.search_gallery = GoodWillSearchGallery(json_data['search_gallery'])
-        if 'keyword_search' in json_data:
-            self.categories = GoodWillCategories(json_data['categories'])
+            self.search_gallery.value_set(GoodWillSearchGallery(json_data['search_gallery']))
+        if 'categories' in json_data:
+            self.categories.value_set(GoodWillCategories(json_data['categories']))
         if 'good_will_location' in json_data:
-            self.good_will_location = GoodWillLocations(json_data['good_will_location'])
+            self.good_will_location.value_set(GoodWillLocations(json_data['good_will_location']))
         if 'low_price' in json_data:
-            self.low_price = json_data['low_price']
+            self.low_price.value_set(json_data['low_price'])
         if 'high_price' in json_data:
-            self.high_price = json_data['high_price']
+            self.high_price.value_set(json_data['high_price'])
         if 'show_buy_now_only' in json_data:
-            self.show_buy_now_only = json_data['show_buy_now_only']
+            self.show_buy_now_only.value_set(json_data['show_buy_now_only'])
         if 'show_pick_up_only' in json_data:
-            self.show_pick_up_only = json_data['show_pick_up_only']
+            self.show_pick_up_only.value_set(json_data['show_pick_up_only'])
         if 'hide_pick_up_only' in json_data:
-            self.hide_pick_up_only = json_data['hide_pick_up_only']
+            self.hide_pick_up_only.value_set(json_data['hide_pick_up_only'])
         if 'show_one_cent_ship_only' in json_data:
-            self.show_one_cent_ship_only = json_data['show_one_cent_ship_only']
+            self.show_one_cent_ship_only.value_set(json_data['show_one_cent_ship_only'])
         if 'search_description' in json_data:
-            self.search_description = json_data['search_description']
+            self.search_description.value_set(json_data['search_description'])
         if 'show_closed_auctions' in json_data:
-            self.show_closed_auctions = json_data['show_closed_auctions']
+            self.show_closed_auctions.value_set(json_data['show_closed_auctions'])
         if 'closed_auction_end_date' in json_data:
-            self.closed_auction_end_date = json_data['closed_auction_end_date']
+            self.closed_auction_end_date.value_set(json_data['closed_auction_end_date'])
         if 'day_back' in json_data:
-            self.day_back = json_data['day_back']
+            self.day_back.value_set(json_data['day_back'])
         if 'search_canada' in json_data:
-            self.search_canada = json_data['search_canada']
+            self.search_canada.value_set(json_data['search_canada'])
         if 'search_international' in json_data:
-            self.search_international = json_data['search_international']
+            self.search_international.value_set(json_data['search_international'])
         if 'field_order' in json_data:
-            self.field_order = json_data['field_order']
+            self.field_order.value_set(json_data['field_order'])
         if 'page_number' in json_data:
-            self.page_number = json_data['page_number']
+            self.page_number.value_set(json_data['page_number'])
         if 'page_size' in json_data:
-            self.page_size = json_data['page_size']
+            self.page_size.value_set(json_data['page_size'])
         if 'short_description' in json_data:
-            self.short_description = json_data['short_description']
+            self.short_description.value_set(json_data['short_description'])
         if 'saved_search_id' in json_data:
-            self.saved_search_id = json_data['saved_search_id']
+            self.saved_search_id.value_set(json_data['saved_search_id'])
 
     def print_search_params(self):
         print(f'url: {self.url}')
-        print(f'search_gallery.value: {self.search_gallery.value}')
-        print(f'keyword_search.value: {self.keyword_search.value}')
-        print(f'categories.value: {self.categories.value}')
-        print(f'good_will_location.value: {self.good_will_location.value}')
-        print(f'low_price.value: {self.low_price.value}')
-        print(f'high_price.value: {self.high_price.value}')
-        print(f'show_buy_now_only.value: {self.show_buy_now_only.value}')
-        print(f'show_pick_up_only.value: {self.show_pick_up_only.value}')
-        print(f'hide_pick_up_only.value: {self.hide_pick_up_only.value}')
-        print(f'show_one_cent_ship_only.value: {self.show_one_cent_ship_only.value}')
-        print(f'search_description.value: {self.search_description.value}')
-        print(f'show_closed_auctions.value: {self.show_closed_auctions.value}')
-        print(f'closed_auction_end_date.value: {self.closed_auction_end_date.value}')
-        print(f'day_back.value: {self.day_back.value}')
-        print(f'search_canada.value: {self.search_canada.value}')
-        print(f'search_international.value: {self.search_international.value}')
-        print(f'field_order.value: {self.field_order.value}')
-        print(f'page_number.value: {self.page_number.value}')
-        print(f'page_size.value: {self.page_size.value}')
-        print(f'short_description.value: {self.short_description.value}')
-        print(f'saved_search_id.value: {self.saved_search_id.value}')
-        print(f'use_buyer_prefrences.value: {self.use_buyer_prefrences.value}')
+        print(f'search_gallery: {self.search_gallery.get_value()}')
+        print(f'keyword_search: {self.keyword_search.get_value()}')
+        print(f'categories: {self.categories.get_value()}')
+        print(f'good_will_location: {self.good_will_location.get_value()}')
+        print(f'low_price: {self.low_price.get_value()}')
+        print(f'high_price: {self.high_price.get_value()}')
+        print(f'show_buy_now_only: {self.show_buy_now_only.get_value()}')
+        print(f'show_pick_up_only: {self.show_pick_up_only.get_value()}')
+        print(f'hide_pick_up_only: {self.hide_pick_up_only.get_value()}')
+        print(f'show_one_cent_ship_only: {self.show_one_cent_ship_only.get_value()}')
+        print(f'search_description: {self.search_description.get_value()}')
+        print(f'show_closed_auctions: {self.show_closed_auctions.get_value()}')
+        print(f'closed_auction_end_date: {self.closed_auction_end_date.get_value()}')
+        print(f'day_back: {self.day_back.get_value()}')
+        print(f'search_canada: {self.search_canada.get_value()}')
+        print(f'search_international: {self.search_international.get_value()}')
+        print(f'field_order: {self.field_order.get_value()}')
+        print(f'page_number: {self.page_number.get_value()}')
+        print(f'page_size: {self.page_size.get_value()}')
+        print(f'short_description: {self.short_description.get_value()}')
+        print(f'saved_search_id: {self.saved_search_id.get_value()}')
+        print(f'use_buyer_prefrences: {self.use_buyer_prefrences.get_value()}')
 
 
     def search(self,keyword_search:str):
@@ -146,7 +146,7 @@ class GoodWillSearch:
             if type(value) is QueryItem:
                 query_string += f'{value.query_string_value()}&'
 
-        return query_string
+        return query_string.rstrip('&')
 
     def search_url(self):
         return self.url + self.query_string()

@@ -47,7 +47,8 @@ class GoodWillProduct:
         return self.html_product
 
     def print_product(self):
-        print('price {} - listing: {} - url: {} durration: {}'.format(self.price, self.listing,self.url, self.durration))
+        print(f'price {self.price} - listing: {self.listing} - url: {self.url} durration: {self.durration}')
+        print(self.end_date)
 
     def parse_product(self, product: PageElement):
         self.price = product.find('div', {'class' : 'price' }).text.split(' ')[0].strip()[1:]
@@ -56,11 +57,10 @@ class GoodWillProduct:
         self.product_id = product.find('div', {'class' : 'product-number' }).text.split(' ')[2]
         self.url = 'https://www.shopgoodwill.com/Item/{}'.format(self.product_id)
 
-        if product.find('div.timer.countdown-classic.product-countdown'):
+        if product.find('div', { 'class':'timer countdown-classic product-countdown'}):
             self.ends = product.select('div.timer.countdown-classic.product-countdown')[0]['data-countdown']
             self.end_date = self.time_zone.localize(datetime.strptime(self.ends, '%m/%d/%Y %I:%M:%S %p'))
             self.durration = self.end_date - datetime.now(self.time_zone)
-            self.durration = self.durration.total_seconds()
         else:
             self.end_date = datetime.now(self.time_zone)
             self.durration = 0
