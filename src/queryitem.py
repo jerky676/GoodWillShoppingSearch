@@ -16,7 +16,8 @@ class QueryItem:
 
     def value(self):
         if type(self.value) is str:
+            print(f'THIS IS AN STRING')
             return self.value
         elif type(self.value) is Enum:
-            print(f'enum: {self.value}')
+            print(f'THIS IS AN ENUM')
             return self.value.value
